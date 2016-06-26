@@ -3,6 +3,7 @@ var ctx;
 var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
 var Asset = {};
+var mikanX = 0;
 
 window.addEventListener('load',init);
 
@@ -55,7 +56,17 @@ function init(){
   });
 }
 
-function update(){
+var lastTimestamp;
+
+function update(timestamp){
+  var delta = 0;
+  if(lastTimestamp != null){
+    delta =(timestamp - lastTimestamp)/1000;
+  }
+  lastTimestamp = timestamp;
+
+  mikanX += 100*delta;
+
   requestAnimationFrame(update);
   render();
 }
@@ -64,5 +75,5 @@ function render(){
   //全体をクリア
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(Asset.images['back'],0,0);
-  ctx.drawImage(Asset.images['box'],0,0);
+  ctx.drawImage(Asset.images['box'],mikanX,0);
 }
