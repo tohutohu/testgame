@@ -1,18 +1,19 @@
-window.addEventListener('load',init);
-
 var canvas;
 var ctx;
 var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
 var Asset = {};
-Asset.image{};
 
-Assets.assets =[
-  { type: 'image', name: 'back', src:'assets/background.png'}
+window.addEventListener('load',init);
+
+Asset.images={};
+
+Asset.assets =[
+  { type: 'image', name: 'back', src:'assets/background.png'},
   { type: 'image', name: 'box', src:'assets/mikan.png'}
 ];
 
-Assets._loadImage = function(asset, onLoad){
+Asset._loadImage = function(asset, onLoad){
   var image = new Image();
   image.src = asset.src;
   image.onload = onLoad;
@@ -20,11 +21,11 @@ Assets._loadImage = function(asset, onLoad){
 };
 
 Asset.loadAssets = function(onComplete){
-  var total = Assets.assets.length;
+  var total = Asset.assets.length;
   var loadCount = 0;
 
   var onLoad = function(){
-    loadCount++:
+    loadCount++;
     if(loadCount >= total){
       onComplete();
     }
