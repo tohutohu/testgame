@@ -132,9 +132,9 @@ function update(timestamp){
   }
   if(Key['right']&&Key['left']){
   }else if(Key['right']){
-    mikanX += 200*delta;
+    mikanX += 400*delta;
   }else if(Key['left']){
-    mikanX -= 200*delta;
+    mikanX -= 400*delta;
   }
 
   if(Key['up']&&Key['down']){
