@@ -97,6 +97,8 @@ function init(){
   canvas = document.getElementById('maincanvas');
   canvas.width = SCREEN_WIDTH;
   canvas.height = SCREEN_HEIGHT;
+
+  pointText = document.getElementById('point');
   
   ctx = canvas.getContext('2d');
 
@@ -120,9 +122,10 @@ function update(timestamp){
       i--;
       continue;
     }
-    if(mikans[i]['x']>mikanX && (mikans[i]['x']+32)<(mikanX+101) && mikans[i]['y']<mikanY && mikans[i]['y']>(mikanY-32)){
+    if(mikans[i]['x']>mikanX && (mikans[i]['x']+32)<(mikanX+101) && mikans[i]['y']<mikanY+25 && mikans[i]['y']>(mikanY-5)){
       mikans.splice(i,1);
       points++;
+      pointText.textContent = "POINT:"+points;
       i--;
       continue;
     }
