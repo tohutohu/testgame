@@ -111,16 +111,20 @@ function update(timestamp){
   if(lastTimestamp != null){
     delta =(timestamp - lastTimestamp)/1000;
   }
-  lastTimestamp = timestamp;y;
+  lastTimestamp = timestamp;
 
   for(var i=0; i<mikans.length;i++){
     mikans[i]['y']+=mikans[i]['v'];
     if(mikans[i]['y']>SCREEN_HEIGHT){
       mikans.splice(i,1);
+      i--;
+      continue;
     }
-    if(mikans[i]['x']>mikanX && mikans[i]['x']+32<mikanX+101 && mikans[i]['y']+32<mikanY && mikans[i]['y']<mikanY-32){
+    if(mikans[i]['x']>mikanX && (mikans[i]['x']+32)<(mikanX+101) && mikans[i]['y']<mikanY && mikans[i]['y']>(mikanY-32)){
       mikans.splice(i,1);
       points++;
+      i--;
+      continue;
     }
   }
   if(Key['right']&&Key['left']){
