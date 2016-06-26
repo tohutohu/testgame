@@ -116,7 +116,7 @@ function update(timestamp){
   lastTimestamp = timestamp;
 
   for(var i=0; i<mikans.length;i++){
-    mikans[i]['y']+=mikans[i]['v'];
+    mikans[i]['y']+=mikans[i]['v']*delta;
     if(mikans[i]['y']>SCREEN_HEIGHT){
       mikans.splice(i,1);
       i--;
@@ -147,7 +147,7 @@ function update(timestamp){
 
   console.log(mikans.length);
   if(timestamp-lastmikan>1000){
-    mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*3)+3});
+    mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*180)+180});
     lastmikan=timestamp;
   }
 
