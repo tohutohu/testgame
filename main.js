@@ -3,10 +3,12 @@ var ctx;
 var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
 var Asset = {};
-var mikanX = 0;
-var mikanY = 0;
+var mikanX = 370;
+var mikanY = 500;
 var Key = {up:false,down:false,right:false,left:false};
-
+var lastTimestamp;
+var mikans = [];
+var lastmikan = 0;
 
 //commmit test
 
@@ -56,7 +58,8 @@ function keyUpHandler(e){
 
 Asset.assets =[
   { type: 'image', name: 'back', src:'assets/background.png'},
-  { type: 'image', name: 'box', src:'assets/mikan.png'}
+  { type: 'image', name: 'box', src:'assets/mikan.png'},
+  { type: 'image', name: 'mikan',src:'assets/mikans.png'}
 ];
 
 Asset._loadImage = function(asset, onLoad){
@@ -101,7 +104,6 @@ function init(){
   });
 }
 
-var lastTimestamp;
 
 function update(timestamp){
   var delta = 0;
@@ -110,11 +112,14 @@ function update(timestamp){
   }
   lastTimestamp = timestamp;
 
+  for(var i=0; i<mikans.length;i++){
+    mikans[i]['y']+=mikans[i]['v'];
+  }
   if(Key['right']&&Key['left']){
   }else if(Key['right']){
-    mikanX += 100*delta;
+    mikanX += 200*delta;
   }else if(Key['left']){
-    mikanX -= 100*delta;
+    mikanX -= 200*delta;
   }
 
   if(Key['up']&&Key['down']){
@@ -122,6 +127,11 @@ function update(timestamp){
     mikanY -= 100*delta;
   }else if(Key['down']){
     mikanY += 100*delta;
+  }
+
+  if(timestamp-lastmikan>1000){
+    mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*6)});
+    lastmikan=timestamp;
   }
 
 
@@ -134,4 +144,7 @@ function render(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(Asset.images['back'],0,0);
   ctx.drawImage(Asset.images['box'],mikanX,mikanY);
+  for(var i=0;i<mikans.length;i++){
+    ctx.drawImage(Asset.images['mikan'],mikans[i]['x'],mikans[i]['y']);
+  }
 }
