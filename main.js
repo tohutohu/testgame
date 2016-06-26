@@ -4,10 +4,30 @@ var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
 var Asset = {};
 var mikanX = 0;
-
-window.addEventListener('load',init);
+var mikanY = 0;
+var Key = {up:false,down:false,right:false,left:false};
 
 Asset.images={};
+
+window.addEventListener('load',init);
+document.onKeyDown = function(e){
+  if(e){
+    switch(e.KeyCode){
+      case 38:
+        Key.up = true;
+        break;
+      case 40:
+        Key.down = true;
+        break;
+      case 37:
+        Key.left = true;
+        break;
+      case 39:
+        Key.right = true;
+        break;
+    }
+  }
+};
 
 Asset.assets =[
   { type: 'image', name: 'back', src:'assets/background.png'},
@@ -65,7 +85,20 @@ function update(timestamp){
   }
   lastTimestamp = timestamp;
 
-  mikanX += 100*delta;
+  if(Key.right&&Key.left){
+  }else if(Key.right){
+    mikanX += 100*delta;
+  }else if(Key.left){
+    mikanX -= 100*delta;
+  }
+
+  if(Key.up&&Key.down){
+  }else if(Key.up){
+    mikanY -= 100*delta;
+  }else if(Key.down){
+    mikanY += 100*delta;
+  }
+
 
   requestAnimationFrame(update);
   render();
@@ -75,5 +108,5 @@ function render(){
   //全体をクリア
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(Asset.images['back'],0,0);
-  ctx.drawImage(Asset.images['box'],mikanX,0);
+  ctx.drawImage(Asset.images['box'],mikanX,mikanY);
 }
