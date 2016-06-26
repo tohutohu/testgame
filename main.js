@@ -9,6 +9,7 @@ var Key = {up:false,down:false,right:false,left:false};
 var lastTimestamp;
 var mikans = [];
 var lastmikan = 0;
+var points =0;
 
 //commmit test
 
@@ -110,10 +111,17 @@ function update(timestamp){
   if(lastTimestamp != null){
     delta =(timestamp - lastTimestamp)/1000;
   }
-  lastTimestamp = timestamp;
+  lastTimestamp = timestamp;y;
 
   for(var i=0; i<mikans.length;i++){
     mikans[i]['y']+=mikans[i]['v'];
+    if(mikans[i]['y']>SCREEN_HEIGHT){
+      mikans.splice(i,1);
+    }
+    if(mikans[i]['x']>mikanX && mikans[i]['x']+32<mikanX+101 && mikans[i]['y']+32<mikanY && mikans[i]['y']<mikanY-32){
+      mikans.splice(i,1);
+      points++;
+    }
   }
   if(Key['right']&&Key['left']){
   }else if(Key['right']){
@@ -128,6 +136,7 @@ function update(timestamp){
   }else if(Key['down']){
     mikanY += 100*delta;
   }
+
 
   if(timestamp-lastmikan>1000){
     mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*3)+3});
