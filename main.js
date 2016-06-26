@@ -10,20 +10,21 @@ var Key = {up:false,down:false,right:false,left:false};
 Asset.images={};
 
 window.addEventListener('load',init);
-document.onKeyDown = function(e){
+window.addEventListener('keydown',keyHandler);
+function keyHandler(e){
   if(e){
-    switch(e.KeyCode){
+    switch(e.keyCode){
       case 38:
-        Key.up = true;
+        Key['up'] = true;
         break;
       case 40:
-        Key.down = true;
+        Key['down'] = true;
         break;
       case 37:
-        Key.left = true;
+        Key['left'] = true;
         break;
       case 39:
-        Key.right = true;
+        Key['right'] = true;
         break;
     }
   }
@@ -85,17 +86,17 @@ function update(timestamp){
   }
   lastTimestamp = timestamp;
 
-  if(Key.right&&Key.left){
-  }else if(Key.right){
+  if(Key['right']&&Key['left']){
+  }else if(Key['right']){
     mikanX += 100*delta;
-  }else if(Key.left){
+  }else if(Key['left']){
     mikanX -= 100*delta;
   }
 
-  if(Key.up&&Key.down){
-  }else if(Key.up){
+  if(Key['up']&&Key['down']){
+  }else if(Key['up']){
     mikanY -= 100*delta;
-  }else if(Key.down){
+  }else if(Key['down']){
     mikanY += 100*delta;
   }
 
