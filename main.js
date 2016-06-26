@@ -7,6 +7,9 @@ var mikanX = 0;
 var mikanY = 0;
 var Key = {up:false,down:false,right:false,left:false};
 
+
+//commmit test
+
 Asset.images={};
 
 window.addEventListener('load',init);
