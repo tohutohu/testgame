@@ -10,8 +10,10 @@ var Key = {up:false,down:false,right:false,left:false};
 Asset.images={};
 
 window.addEventListener('load',init);
-window.addEventListener('keydown',keyHandler);
-function keyHandler(e){
+window.addEventListener('keydown',keyDownHandler);
+window.addEventListener('keyup',keyUpHandler);
+
+function keyDownHandler(e){
   if(e){
     switch(e.keyCode){
       case 38:
@@ -25,6 +27,25 @@ function keyHandler(e){
         break;
       case 39:
         Key['right'] = true;
+        break;
+    }
+  }
+};
+
+function keyUpHandler(e){
+  if(e){
+    switch(e.keyCode){
+      case 38:
+        Key['up'] = false;
+        break;
+      case 40:
+        Key['down'] = false;
+        break;
+      case 37:
+        Key['left'] = false;
+        break;
+      case 39:
+        Key['right'] = false;
         break;
     }
   }
