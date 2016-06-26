@@ -130,7 +130,7 @@ function update(timestamp){
   }
 
   if(timestamp-lastmikan>1000){
-    mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*6)});
+    mikans.push({x:Math.floor(Math.random()*801),y:0,v:Math.floor(Math.random()*3)+3});
     lastmikan=timestamp;
   }
 
