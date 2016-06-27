@@ -10,6 +10,8 @@ var lastTimestamp;
 var mikans = [];
 var lastmikan = 0;
 var points =0;
+var time=0;
+var timeText;
 
 //commmit test
 
@@ -100,6 +102,7 @@ function init(){
   canvas.height = SCREEN_HEIGHT;
 
   pointText = document.getElementById('point');
+  timeText = document.getElementById('time');
 
   ctx = canvas.getContext('2d');
 
@@ -124,6 +127,9 @@ function update(timestamp){
     delta =(timestamp - lastTimestamp)/1000;
   }
   lastTimestamp = timestamp;
+  time += delta;
+
+  timeText.textContent = "経過時間:"+time;
 
   for(var i=0; i<mikans.length;i++){
     mikans[i]['y']+=mikans[i]['v']*delta;
