@@ -13,7 +13,6 @@ var points =0;
 var time=0;
 var timeText;
 
-//commmit test
 
 Asset.images={};
 
