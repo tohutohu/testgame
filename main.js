@@ -60,7 +60,8 @@ function keyUpHandler(e){
 Asset.assets =[
   { type: 'image', name: 'back', src:'assets/background.png'},
   { type: 'image', name: 'box', src:'assets/mikan.png'},
-  { type: 'image', name: 'mikan',src:'assets/mikans.png'}
+  { type: 'image', name: 'mikan',src:'assets/mikans.png'},
+  { type: 'image', name: 'op'  , src:'assets/opening.png'}
 ];
 
 Asset._loadImage = function(asset, onLoad){
@@ -99,12 +100,21 @@ function init(){
   canvas.height = SCREEN_HEIGHT;
 
   pointText = document.getElementById('point');
-  
+
   ctx = canvas.getContext('2d');
 
   Asset.loadAssets(function(){
-    requestAnimationFrame(update);
+    requestAnimationFrame(opening);
   });
+}
+
+function opening(){
+	requestAnimationFrame(opening);
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	ctx.drawImage(Asset.images['op'],0,0);
+	if(Key['up']){
+		requestAnimationFrame(update);
+	}
 }
 
 
