@@ -14,7 +14,6 @@ var time=0;
 var timeText;
 
 
-
 Asset.images={};
 
 window.addEventListener('load',init);
